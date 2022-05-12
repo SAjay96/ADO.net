@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 
 using WindowsFormsApp.Model;
+using System.Data;
 
 namespace WindowsFormsApp
 {
@@ -66,6 +67,27 @@ namespace WindowsFormsApp
             int res = cmd.ExecuteNonQuery();
             con.Close();
             return res;
+        }
+        public int Delete(int id)
+        {
+            string qry = "delete from Emp where Id=@id";
+            cmd = new SqlCommand(qry, con);
+            cmd.Parameters.AddWithValue("@id", id);
+            con.Open();
+            int res = cmd.ExecuteNonQuery();
+            con.Close();
+            return res;
+        }
+        public DataTable GetAllProducts()
+        {
+            DataTable table = new DataTable();
+            string qry = "select * from Product";
+            cmd = new SqlCommand(qry, con);
+            con.Open();
+            dr = cmd.ExecuteReader();
+            table.Load(dr);
+            con.Close();
+            return table;
         }
     }
 }

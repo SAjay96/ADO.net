@@ -188,7 +188,6 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
-            this.Name = "Form2";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

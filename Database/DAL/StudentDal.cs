@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 
 using WindowsFormsApp.Model;
+using System.Data;
 
 namespace WindowsFormsApp
 {
@@ -57,7 +58,7 @@ namespace WindowsFormsApp
             con.Close();
             return res;
         }
-        public int UpdateProduct(Student stu)
+        public int UpdateStudent(Student stu)
         {
 
             string qry = "update Student set Name=@name,Branch=@branch where Roll=@roll";
@@ -71,5 +72,27 @@ namespace WindowsFormsApp
             con.Close();
             return res;
         }
+        public int DeleteStudent(int id)
+        {
+            string qry = "delete from Student where Id=@id";
+            cmd = new SqlCommand(qry, con);
+            cmd.Parameters.AddWithValue("@id", id);
+            con.Open();
+            int res = cmd.ExecuteNonQuery();
+            con.Close();
+            return res;
+        }
+        public DataTable GetAllStudents()
+        {
+            DataTable table = new DataTable();
+            string qry = "select * from Student";
+            cmd=new SqlCommand(qry, con);
+            con.Open();
+            dr = cmd.ExecuteReader();
+            table.Load(dr);
+            con.Close();
+            return table;
+        }
+
     }
 }

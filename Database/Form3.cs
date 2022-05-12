@@ -31,7 +31,7 @@ namespace Database
             stu.Branch = txtBranch.Text;
             stu.Percentage = Convert.ToDouble(txtPercentage.Text);
            
-            int res = studal.Save();
+            int res = studal.SaveStudent(stu);
             if (res == 1)
                 MessageBox.Show("Inserted the record");
         }
@@ -44,7 +44,7 @@ namespace Database
             stu.Branch = txtBranch.Text;
             stu.Percentage = Convert.ToDouble(txtPercentage.Text);
 
-            int res = studal.Update(stu);
+            int res = studal.UpdateStudent(stu);
             if (res == 1)
                 MessageBox.Show("updated the record");
         }
@@ -52,7 +52,7 @@ namespace Database
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Student stu  = studal.GetStudentByRoll(Convert.ToInt32(txtRollNo.Text));
-            if (Student. > 0)
+            if (stu.RollNo> 0)
             {
                 txtName.Text = stu.Name;
                 txtBranch.Text = stu.Branch.ToString();
@@ -65,7 +65,7 @@ namespace Database
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int res = studal.Delete(Convert.ToInt32(txtRollNo.Text));
+            int res = studal.DeleteStudent(Convert.ToInt32(txtRollNo.Text));
             if (res == 1)
                 MessageBox.Show("deleted the record");
         }
